@@ -3,10 +3,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Moq.Protected;
 using Moq;
 using System.Net;
-using UseWebApp.IServices;
 using UseWebApp.Services;
 using Castle.Core.Configuration;
 using System.Text;
+using UseWebApp.Interfaces.IServices;
 
 namespace UseWebApp.Tests;
 

@@ -1,4 +1,4 @@
-﻿namespace UseWebApp.IServices;
+﻿namespace UseWebApp.Interfaces.IServices;
 
 public interface ITokenService
 {

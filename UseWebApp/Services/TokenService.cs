@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Text;
-using UseWebApp.IServices;
+using UseWebApp.Interfaces.IServices;
 using UseWebApp.Models.Response;
 
 namespace UseWebApp.Services;

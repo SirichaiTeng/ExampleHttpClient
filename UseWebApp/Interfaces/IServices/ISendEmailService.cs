@@ -1,6 +1,6 @@
 ﻿using UseWebApp.Models.Entities;
 
-namespace UseWebApp.IServices;
+namespace UseWebApp.Interfaces.IServices;
 
 public interface ISendEmailService
 {
