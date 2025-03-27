@@ -1,7 +1,7 @@
-﻿using System.Text.Json;
-using System.Text;
-using UseWebApp.IServices;
+﻿using System.Text;
 using UseWebApp.Models.Entities;
+using UseWebApp.Interfaces.IServices;
+using Newtonsoft.Json;
 
 namespace UseWebApp.Services;
 
@@ -63,8 +63,34 @@ public class SendEmailService : ISendEmailService
         var request = new HttpRequestMessage(HttpMethod.Post, _emailHttpClient.BaseAddress);
         request.Headers.Add("ClientId", _configuration1["Email:clientId"] ?? "");
         request.Headers.Add("access_token", token);
-        request.Content = new StringContent(JsonSerializer.Serialize(emailpayload),Encoding.UTF8,"application/json");
+        request.Content = new StringContent(JsonConvert.SerializeObject(emailpayload),Encoding.UTF8,"application/json");
         var response = await _emailHttpClient.SendAsync(request);
         return response.IsSuccessStatusCode;          
+    }
+
+    public async Task<bool> SendEmailFile(string file)
+    {
+        var subject = Constants.EmailConstant.SubjectSendFile(file);
+        var body = Constants.EmailConstant.BodySendFile(file);
+
+        var emailpayload = new
+        {
+            from = "param or appsettings",
+            to = "Team",
+            subject = subject,
+            body = body,
+        };
+        try
+        {
+            var json = JsonConvert.SerializeObject(emailpayload);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await _emailHttpClient.PostAsync(_emailHttpClient.BaseAddress, content);
+            return response.IsSuccessStatusCode;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Failed to send email: {ex.Message}");
+            return false;
+        }
     }
 }

@@ -1,5 +1,5 @@
 
-using UseWebApp.IServices;
+using UseWebApp.Interfaces.IServices;
 using UseWebApp.Services;
 
 namespace UseWebApp;

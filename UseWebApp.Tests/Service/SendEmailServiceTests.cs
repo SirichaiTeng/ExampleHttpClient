@@ -3,7 +3,7 @@ using Moq;
 using Moq.Protected;
 using Newtonsoft.Json;
 using System.Net;
-using UseWebApp.IServices;
+using UseWebApp.Interfaces.IServices;
 using UseWebApp.Models.Entities;
 using UseWebApp.Services;
 
